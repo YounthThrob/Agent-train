@@ -64,6 +64,7 @@ def run_agent(user_input: str):
             "role": "user",
             "content": f"工具结果: {tool_result['result']}"
         })
+        print("\n[DEBUG MESSAGES]:", messages)
 
         final = llm.chat(messages)
 
