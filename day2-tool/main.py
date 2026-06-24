@@ -9,18 +9,33 @@ llm = LLM()
 
 def parse_tool(response: str):
 
+    import json
+
+def parse_tool(response: str):
+
+    print("\n[DEBUG LLM RAW]:", response)
+
     try:
         data = json.loads(response)
-
-        tool_name = data.get("tool")
-        tool_input = data.get("input")
-
-        print(f"解析工具: {tool_name}, input: {tool_input}")
-
-        return tool_name, tool_input
-
-    except json.JSONDecodeError:
+    except Exception:
+        print("❌ JSON解析失败")
         return None, None
+
+    if not isinstance(data, dict):
+        print("❌ 非dict结构")
+        return None, None
+
+    tool_name = data.get("tool")
+    tool_input = data.get("input")
+
+    if tool_name is None:
+        print("❌ 没有tool字段")
+        return None, None
+
+    if tool_name == "none":
+        return None, None
+
+    return tool_name, tool_input
 
 
 def run_agent(user_input: str):
