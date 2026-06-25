@@ -1,4 +1,4 @@
-from core import BaseNode
+from core.node import BaseNode
 
 class IntentNode(BaseNode):
     name = "IntentNode"
