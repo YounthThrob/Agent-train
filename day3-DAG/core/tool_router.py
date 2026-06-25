@@ -5,9 +5,9 @@ from tools.risk_tool import check_risk
 class ToolRouter:
     def __init__(self):
         self.tools = {
-            "amount_tool": check_amount_limit,
-            "policy_tool": query_policy,
-            "risk_tool": check_risk
+            "check_amount_limit": check_amount_limit,
+            "query_policy": query_policy,
+            "check_risk": check_risk
         }
 
     def route(self, tool_name, tool_input):
