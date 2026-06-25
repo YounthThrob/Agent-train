@@ -1,4 +1,4 @@
-from core.node import BaseNode
+﻿from core.node import BaseNode
 
 class RiskNode(BaseNode):
     name = "risk_node"
@@ -10,11 +10,11 @@ class RiskNode(BaseNode):
             "city": state.params.get("city"),
         }
 
-        result = self.tool_router.route("risk_check", tool_input)
+        result = self.tool_router.route("check_risk", tool_input)
         state.add_trace(self.name, {
-            "tool": "risk_check",
+            "tool": "check_risk",
             "tool_input": tool_input,
-            "output": result
+            "tool_result": result
         })
 
         if not result["success"]:
