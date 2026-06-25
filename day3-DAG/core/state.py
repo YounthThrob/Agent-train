@@ -1,0 +1,31 @@
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
+
+@dataclass
+class AgentState:
+    # 用户输入
+    user_input: str
+    # 用户意图
+    intent: Optional[str] = None
+    # 抽取参数
+    params: Dict[str, Any] = field(default_factory=dict)
+    # 策略结果
+    policy_result: Dict[str, Any] = field(default_factory=dict)
+    # 金额检查结果
+    amount_check_result: Dict[str, Any] = field(default_factory=dict)
+    # 风险结果
+    risk_result: Dict[str, Any] = field(default_factory=dict)
+    # 任务执行结果
+    final_output: Optional[str] = None
+
+    errors: List[str] = field(default_factory=list)
+    trace: List[Dict[str, Any]] = field(default_factory=list)
+
+    def add_trace(self, node_name: str, data: Dict[str, Any]):
+        self.trace.append({
+            "node": node_name, 
+            "data": data
+        })
+
+    def add_error(self, error: str):
+        self.errors.append(error)
