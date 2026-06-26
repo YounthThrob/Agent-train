@@ -139,3 +139,23 @@ Errors encountered in node 'param_node': ['未能提取报销金额。']
 ========== 执行轨迹 ==========
 {'node': 'PlannerNode', 'data': {'plan': ['param_node', 'policy_node', 'final_node']}}
 {'node': 'param_node', 'data': {'params': {'amount': None, 'city': '上海', 'expense_type': '酒店'}}}
+
+## LLMPlannerNode
+### 测试结果
+请输入问题（exit退出）上海酒店报销标准是多少？
+
+========== Planner 生成执行计划 ==========
+生成的执行计划: ['param_node', 'policy_node', 'final_node']
+
+========== 执行Dynamic DAG引擎 ==========
+
+========== 动态执行节点: param_node ==========
+Errors encountered in node 'param_node': ['未能提取报销金额。']
+
+========== 最终结果 ==========
+执行过程中出现错误：
+- 未能提取报销金额。
+
+========== 执行轨迹 ==========
+{'node': 'llm_planner_node', 'data': {'plan': ['param_node', 'policy_node', 'final_node'], 'raw': '{\n  "plan": ["param_node", "policy_node", "final_node"]\n}'}}
+{'node': 'param_node', 'data': {'params': {'amount': None, 'city': '上海', 'expense_type': '酒店'}}}

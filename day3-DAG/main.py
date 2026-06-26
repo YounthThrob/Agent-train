@@ -11,6 +11,7 @@ from nodes.amount_check_node import AmountCheckNode
 from nodes.risk_node import RiskNode
 from nodes.final_node import FinalNode
 from nodes.planner_node import PlannerNode
+from nodes.llm_planner_node import LLMPlannerNode
 
 
 def build_agent():
@@ -22,7 +23,7 @@ def build_agent():
     tool_router = ToolRouter()  # Initialize your tool router here
 
     # 1. Planner 单独执行
-    planner_node = PlannerNode(llm, tool_router)
+    planner_node = LLMPlannerNode(llm, tool_router)
 
     # 2. 注册节点
     node_registry = {
