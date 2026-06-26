@@ -9,6 +9,8 @@ class AgentState:
     intent: Optional[str] = None
     # 抽取参数
     params: Dict[str, Any] = field(default_factory=dict)
+    # Planner生成的执行计划
+    plan: List[str] = field(default_factory=list)
     # 策略结果
     policy_result: Dict[str, Any] = field(default_factory=dict)
     # 金额检查结果

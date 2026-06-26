@@ -21,3 +21,41 @@ DAG中不能靠散装变量传递数据，必须有统一的转台
     AmountCheckNode：检查金额
     RiskNode：检查风险
     FinalNode：生成最终回答
+
+## 动态的DAG
+前面的流程就是固定死的，下载是做升级
+用户输入
+  ↓
+Planner 生成计划
+  ↓
+DAG Engine 根据 plan 执行指定节点
+  ↓
+节点结果写入 State
+  ↓
+FinalNode 输出结果
+### 架构图
+用户输入
+  ↓
+PlannerNode
+  ↓
+生成执行计划 JSON
+  ↓
+{
+  "plan": [
+    "param_node",
+    "policy_node",
+    "amount_check_node",
+    "risk_node",
+    "final_node"
+  ]
+}
+  ↓
+DynamicDAGEngine
+  ↓
+按 plan 找到对应 node
+  ↓
+逐个执行节点
+  ↓
+State 汇总结果
+  ↓
+FinalNode 输出
