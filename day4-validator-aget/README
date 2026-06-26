@@ -1,0 +1,20 @@
+#DAY4
+## 架构图
+Planner
+  ↓
+PlanValidator
+  ↓
+DynamicDAGEngine
+  ↓
+NodeInputValidator
+  ↓
+Node
+  ↓
+Tool
+  ↓
+NodeOutputValidator
+  ↓
+Repair Loop
+  ↓
+Final
+## plan校验

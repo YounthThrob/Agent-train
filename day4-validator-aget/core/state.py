@@ -19,9 +19,15 @@ class AgentState:
     risk_result: Dict[str, Any] = field(default_factory=dict)
     # 任务执行结果
     final_output: Optional[str] = None
-
+    # 错误信息
     errors: List[str] = field(default_factory=list)
+    # 警告信息
+    Warnings: List[str] = field(default_factory=list)
+    # 执行过程追踪信息
     trace: List[Dict[str, Any]] = field(default_factory=list)
+    # 修复次数
+    repair_count: int = 0
+    max_repair_count: int = 3
 
     def add_trace(self, node_name: str, data: Dict[str, Any]):
         self.trace.append({
@@ -31,3 +37,9 @@ class AgentState:
 
     def add_error(self, error: str):
         self.errors.append(error)
+
+    def add_warning(self, warning: str):
+        self.Warnings.append(warning)
+
+    def clear_errors(self):
+        self.errors.clear()
