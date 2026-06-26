@@ -2,6 +2,7 @@ from llm import LLM
 from core.tool_router import ToolRouter
 from core.state import AgentState as State
 from core.dag_engine import DAGEngine
+from core.DynamicDAGEngine import DynamicDAGEngine
 
 from nodes.intent_node import IntentNode
 from nodes.param_node  import ParamNode
@@ -42,7 +43,7 @@ def build_agent():
     # ]
 
     # return DAGEngine(nodes)  # Return the DAG engine with the nodes
-    engine = DAGEngine(node_registry)
+    engine = DynamicDAGEngine(node_registry)
     return engine,planner_node
 
 def run_agent(user_input):
@@ -107,5 +108,5 @@ if __name__ == "__main__":
 
         if user_input.lower() == "exit":
             break
-        
+
         run_agent(user_input)
