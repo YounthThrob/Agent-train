@@ -22,7 +22,7 @@ class AgentState:
     # 错误信息
     errors: List[str] = field(default_factory=list)
     # 警告信息
-    Warnings: List[str] = field(default_factory=list)
+    warnings: List[str] = field(default_factory=list)
     # 执行过程追踪信息
     trace: List[Dict[str, Any]] = field(default_factory=list)
     # 修复次数

@@ -77,7 +77,7 @@ class DynamicDAGEngine:
         
         return state
         
-        def _get_node_output(self, node_name, state):
+    def _get_node_output(self, node_name, state):
             """
             获取节点输出
             """
