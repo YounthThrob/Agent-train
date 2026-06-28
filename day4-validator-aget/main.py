@@ -2,6 +2,8 @@ from llm import LLM
 from core.tool_router import ToolRouter
 from core.state import AgentState as State
 from core.dag_engine import DAGEngine
+from core.repair import RepairManager
+from core.validator import Validator
 from core.DynamicDAGEngine import DynamicDAGEngine
 
 from nodes.intent_node import IntentNode
@@ -44,7 +46,9 @@ def build_agent():
     # ]
 
     # return DAGEngine(nodes)  # Return the DAG engine with the nodes
-    engine = DynamicDAGEngine(node_registry)
+    validator = Validator()
+    repair_manager = RepairManager()
+    engine = DynamicDAGEngine(node_registry, validator, repair_manager)
     return engine,planner_node
 
 def run_agent(user_input):
@@ -97,7 +101,11 @@ def run_agent(user_input):
             print(f"- {error}")
     else:
         print(result_state.final_output)
-
+    
+    print("\n========== warning ==========")
+    for warning in result_state.warnings:
+            print(f"- {warning}")
+    
     print("\n========== 执行轨迹 ==========")
     for trace in result_state.trace:
         print(trace)
