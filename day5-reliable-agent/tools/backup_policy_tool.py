@@ -1,4 +1,4 @@
-def query_policy_backup_policy(tool_input):
+def query_policy_backup(tool_input):
     """
     备用制度查询工具
     模拟从本地缓存或备用知识库中查询

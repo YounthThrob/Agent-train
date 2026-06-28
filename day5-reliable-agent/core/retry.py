@@ -5,11 +5,11 @@ class RetryManager:
     def __init__(
             self,
             max_retries: int = 3,
-            initial_delay: float = 0.5,
+            base_delay: float = 0.5,
             max_delay: float = 5.0,
     ):
         self.max_retries = max_retries
-        self.initial_delay = initial_delay
+        self.base_delay = base_delay
         self.max_delay = max_delay
 
     def run(self,func: Callable,*args, **kwargs) -> Tuple[bool, Any, int, str | None]:
@@ -32,6 +32,6 @@ class RetryManager:
                 if attempt > self.max_retries:
                     break
                 # 指数级退避重试
-                delay = min(self.initial_delay * (2 ** attempt), self.max_delay)
+                delay = min(self.base_delay * (2 ** attempt), self.max_delay)
                 time.sleep(delay)
         return False, last_error, self.max_retries, last_error
