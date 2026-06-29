@@ -49,3 +49,9 @@ Final
 最终结果是什么
 
 这对调试和审计很重要。
+
+## Memory.py——用来做长期记忆和执行记忆的管理
+load：任务开始前加载记忆
+save：任务结束后保存记忆
+update_preferences：记录常用城市/报销类型
+append_history：记录执行历史
