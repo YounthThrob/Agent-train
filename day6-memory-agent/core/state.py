@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 class AgentState:
     # 用户输入
     user_input: str
+    user_id: str = "default_user"
     # 用户意图
     intent: Optional[str] = None
     # 抽取参数
@@ -19,6 +20,8 @@ class AgentState:
     risk_result: Dict[str, Any] = field(default_factory=dict)
     # 任务执行结果
     final_output: Optional[str] = None
+    # 记忆信息
+    memory: Dict[str, Any] = field(default_factory=dict)
     # 错误信息
     errors: List[str] = field(default_factory=list)
     # 警告信息
@@ -39,7 +42,7 @@ class AgentState:
         self.errors.append(error)
 
     def add_warning(self, warning: str):
-        self.Warnings.append(warning)
+        self.warnings.append(warning)
 
     def clear_errors(self):
         self.errors.clear()
