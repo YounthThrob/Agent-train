@@ -25,9 +25,9 @@ def build_agent():
     # Implementation of the agent building logic goes here
     llm = LLM()  # Initialize your LLM here
     tool_router = ToolRouter()  # Initialize your tool router here
-    memory_manager = MemoryManager()  # Initialize your memory manager here
     memory_store = JSONMemoryStore("data/store.json")  # Initialize your memory store here
-
+    memory_manager = MemoryManager(memory_store)  # Initialize your memory manager here
+    
     # 1. Planner 单独执行
     planner_node = LLMPlannerNode(llm, tool_router)
 

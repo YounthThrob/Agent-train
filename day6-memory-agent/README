@@ -55,3 +55,10 @@ load：任务开始前加载记忆
 save：任务结束后保存记忆
 update_preferences：记录常用城市/报销类型
 append_history：记录执行历史
+
+## 总结
+建议你始终按这三层理解：
+
+短期记忆：AgentState
+长期记忆：memory.json / database
+执行记忆：trace / history
