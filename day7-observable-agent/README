@@ -20,3 +20,81 @@ Memory Save
 Execution Report
  ↓
 Final
+
+## 运行结果
+请输入问题（exit退出）: 帮我检查一笔上海出差酒店报销，金额1280元，看看是否符合公司制度
+2026-06-30 14:38:35 | __main__ | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] request start | user_id=u001
+
+========== Planner 生成执行计划 ==========
+2026-06-30 14:38:41 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 5.8418s | tokens: 396
+执行计划: ['param_node', 'policy_node', 'amount_check_node', 'risk_node', 'final_node']
+
+========== Dynamic DAG 开始执行 ==========
+
+========== 动态执行节点: param_node ==========
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: param_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: param_node
+
+========== 动态执行节点: policy_node ==========
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: policy_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: query_policy | input: {'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: query_policy | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: policy_node
+
+========== 动态执行节点: amount_check_node ==========
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: amount_check_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: check_amount_limit | input: {'amount': 1280.0, 'limit': 1500}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: check_amount_limit | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: amount_check_node
+
+========== 动态执行节点: risk_node ==========
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: risk_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: check_risk | input: {'amount': 1280.0, 'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: check_risk | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: risk_node
+
+========== 动态执行节点: final_node ==========
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: final_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: final_node
+2026-06-30 14:38:41 | __main__ | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] request finish | success=True | latency=5.8487s
+
+========== 最终结果 ==========
+
+报销审核结果：报销申请通过
+
+关键信息：
+- 报销类型：酒店
+- 报销金额：1280.0元
+- 城市：上海
+
+制度规则：
+- 上海出差酒店报销标准上限为1500元/晚
+
+风险检查：
+- 风险等级：低
+- 风险项：[]
+
+
+
+========== Execution Report ==========
+trace_id: b7103005-ee59-4d66-8fc1-e7654508382a
+success: True
+total_latency: 5.8497s
+total_tokens: 0
+plan: ['param_node', 'policy_node', 'amount_check_node', 'risk_node', 'final_node']
+
+--- Node Metrics ---
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'type': 'node', 'name': 'param_node', 'sucess': True, 'latency': 0.0, 'error': None, 'start_time': 1782801521.0364714, 'end_time': 1782801521.0364714}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'type': 'node', 'name': 'policy_node', 'sucess': True, 'latency': 0.0, 'error': None, 'start_time': 1782801521.037469, 'end_time': 1782801521.037469}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'type': 'node', 'name': 'amount_check_node', 'sucess': True, 'latency': 0.0, 'error': None, 'start_time': 1782801521.0384746, 'end_time': 1782801521.0384746}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'type': 'node', 'name': 'risk_node', 'sucess': True, 'latency': 0.001, 'error': None, 'start_time': 1782801521.039471, 'end_time': 1782801521.0404723}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'type': 'node', 'name': 'final_node', 'sucess': True, 'latency': 0.0, 'error': None, 'start_time': 1782801521.0404723, 'end_time': 1782801521.0404723}
+
+--- Tool Metrics ---
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'node': 'policy_node', 'tool': 'query_policy', 'success': True, 'used_fallback': False, 'retry_count': None, 'latency': None, 'error': None}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'node': 'amount_check_node', 'tool': 'check_amount_limit', 'success': True, 'used_fallback': False, 'retry_count': None, 'latency': None, 'error': None}
+{'trace_id': 'b7103005-ee59-4d66-8fc1-e7654508382a', 'node': 'risk_node', 'tool': 'check_risk', 'success': True, 'used_fallback': False, 'retry_count': None, 'latency': None, 'error': None}
+
+--- Errors ---
+
+--- Warnings ---
