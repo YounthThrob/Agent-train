@@ -1,0 +1,60 @@
+2026-06-30 14:22:53 | __main__ | INFO | [0c54f0eb-f01c-4ac4-80b3-e2e6f312e85e] request start | user_id=u001
+2026-06-30 14:23:01 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 8.6796s | tokens: 394
+2026-06-30 14:23:01 | core.DynamicDAGEngine | INFO | [0c54f0eb-f01c-4ac4-80b3-e2e6f312e85e] start node: param_node
+2026-06-30 14:23:01 | core.DynamicDAGEngine | ERROR | [0c54f0eb-f01c-4ac4-80b3-e2e6f312e85e] node error: param_node, errors=['缺少金额参数', '缺少城市参数', '缺少报销类型参数']
+2026-06-30 14:23:01 | __main__ | INFO | [0c54f0eb-f01c-4ac4-80b3-e2e6f312e85e] request finish | success=False | latency=8.7161s
+2026-06-30 14:23:01 | __main__ | INFO | [64a60ec9-bd91-49c8-ba92-613b762c470f] request start | user_id=u001
+2026-06-30 14:23:06 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 4.5558s | tokens: 394
+2026-06-30 14:23:06 | core.DynamicDAGEngine | INFO | [64a60ec9-bd91-49c8-ba92-613b762c470f] start node: param_node
+2026-06-30 14:23:06 | core.DynamicDAGEngine | ERROR | [64a60ec9-bd91-49c8-ba92-613b762c470f] node error: param_node, errors=['缺少金额参数', '缺少城市参数', '缺少报销类型参数']
+2026-06-30 14:23:06 | __main__ | INFO | [64a60ec9-bd91-49c8-ba92-613b762c470f] request finish | success=False | latency=4.565s
+2026-06-30 14:23:06 | __main__ | INFO | [9447b474-ef44-4948-9841-d336996be7f3] request start | user_id=u001
+2026-06-30 14:23:12 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 6.2426s | tokens: 445
+2026-06-30 14:23:12 | core.DynamicDAGEngine | INFO | [9447b474-ef44-4948-9841-d336996be7f3] start node: param_node
+2026-06-30 14:23:12 | core.DynamicDAGEngine | ERROR | [9447b474-ef44-4948-9841-d336996be7f3] node error: param_node, errors=['缺少金额参数', '缺少城市参数', '缺少报销类型参数']
+2026-06-30 14:23:12 | __main__ | INFO | [9447b474-ef44-4948-9841-d336996be7f3] request finish | success=False | latency=6.2483s
+2026-06-30 14:23:12 | __main__ | INFO | [a6f8fe90-45ce-4365-ae77-8549792f929d] request start | user_id=u001
+2026-06-30 14:23:16 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 3.9633s | tokens: 349
+2026-06-30 14:23:16 | core.DynamicDAGEngine | INFO | [a6f8fe90-45ce-4365-ae77-8549792f929d] start node: param_node
+2026-06-30 14:23:16 | core.DynamicDAGEngine | ERROR | [a6f8fe90-45ce-4365-ae77-8549792f929d] node error: param_node, errors=['缺少金额参数', '缺少城市参数', '缺少报销类型参数']
+2026-06-30 14:23:16 | __main__ | INFO | [a6f8fe90-45ce-4365-ae77-8549792f929d] request finish | success=False | latency=3.9685s
+2026-06-30 14:23:44 | __main__ | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] request start | user_id=u001
+2026-06-30 14:23:48 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 3.63s | tokens: 303
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] start node: param_node
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] finish node: param_node
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] start node: policy_node
+2026-06-30 14:23:48 | core.tool_router | INFO | Tool call start | tool: query_policy | input: {'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:23:48 | core.tool_router | INFO | Tool call success | tool: query_policy | latency: 0.001s | retries: None
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] finish node: policy_node
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] start node: amount_check_node
+2026-06-30 14:23:48 | core.tool_router | INFO | Tool call start | tool: check_amount_limit | input: {'amount': 1280.0, 'limit': 1500}
+2026-06-30 14:23:48 | core.tool_router | INFO | Tool call success | tool: check_amount_limit | latency: 0.0s | retries: None
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] finish node: amount_check_node
+2026-06-30 14:23:48 | core.DynamicDAGEngine | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] start node: final_node
+2026-06-30 14:23:48 | core.DynamicDAGEngine | ERROR | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] node exception: final_node
+Traceback (most recent call last):
+  File "E:\develop project\Agent-train\day7-observable-agent\core\DynamicDAGEngine.py", line 78, in run
+    state = node.run(state)
+  File "E:\develop project\Agent-train\day7-observable-agent\nodes\final_node.py", line 25, in run
+    - 风险等级 {state.risk_check_result.get("risk_level")}
+AttributeError: 'AgentState' object has no attribute 'risk_check_result'. Did you mean: 'amount_check_result'?
+2026-06-30 14:23:48 | __main__ | INFO | [2dae4318-64c1-4cc6-82fc-4ba38a1f419a] request finish | success=False | latency=3.6399s
+2026-06-30 14:34:50 | main | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] request start | user_id=u001
+2026-06-30 14:34:59 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 9.1658s | tokens: 525
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: param_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: param_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: policy_node
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call start | tool: query_policy | input: {'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call success | tool: query_policy | latency: 0.001s | retries: None
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: policy_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: amount_check_node
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call start | tool: check_amount_limit | input: {'amount': 1280.0, 'limit': 1500}
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call success | tool: check_amount_limit | latency: 0.0s | retries: None
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: amount_check_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: risk_node
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call start | tool: check_risk | input: {'amount': 1280.0, 'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:34:59 | core.tool_router | INFO | Tool call success | tool: check_risk | latency: 0.0s | retries: None
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: risk_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: final_node
+2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: final_node
+2026-06-30 14:34:59 | main | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] request finish | success=True | latency=9.1898s

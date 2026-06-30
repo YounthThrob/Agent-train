@@ -5,7 +5,8 @@ class FinalNode(BaseNode):
 
     def run(self, state):
         amount_passed = state.amount_check_result.get("passed")
-        risk_passed = state.risk_result.get("passed")
+        risk_result = state.risk_result
+        risk_passed = risk_result.get("passed")
         if amount_passed and risk_passed:
             conclusion = "报销申请通过"
         else:
@@ -19,11 +20,11 @@ class FinalNode(BaseNode):
 - 城市：{state.params.get("city")}
 
 制度规则：
-- {state.policy_result.get("risk_level")}
+- {state.policy_result.get("rule")}
 
 风险检查：
-- 风险等级 {state.risk_check_result.get("risk_level")}
-- 风险项：{state.risk_check_result.get("risk_flags")}
+- 风险等级：{risk_result.get("risk_level")}
+- 风险项：{risk_result.get("risk_flags")}
 
 """
         state.add_trace(self.name, {

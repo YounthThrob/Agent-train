@@ -84,6 +84,9 @@ class LLMPlannerNode(BaseNode):
         if "param_node" not in plan:
             plan.insert(0, "param_node")
 
+        if "risk_node" not in plan:
+            plan.insert(plan.index("final_node"), "risk_node")
+
         state.plan = plan
 
         state.add_trace(self.name, {

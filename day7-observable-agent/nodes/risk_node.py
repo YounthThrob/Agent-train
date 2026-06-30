@@ -11,6 +11,18 @@ class RiskNode(BaseNode):
         }
 
         result = self.tool_router.route("check_risk", tool_input)
+        
+        state.tool_metrics.append({
+            "trace_id": state.trace_id,
+            "node": self.name,
+            "tool": "check_risk",
+            "success": result["success"],
+            "used_fallback": result.get("used_fallback"),
+            "retry_count": result.get("retry_count"),
+            "latency": result.get("metadata", {}).get("latency"),
+            "error": result.get("error")
+        })
+
         state.add_trace(self.name, {
             "tool": "check_risk",
             "tool_input": tool_input,
@@ -21,6 +33,6 @@ class RiskNode(BaseNode):
             state.add_error(result["error"])
             return state
         
-        state.risk_check_result = result["result"]
+        state.risk_result = result["result"]
 
         return state
