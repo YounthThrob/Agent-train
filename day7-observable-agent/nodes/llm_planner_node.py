@@ -48,7 +48,15 @@ class LLMPlannerNode(BaseNode):
         ])
 
         content = response["content"]
-
+        state.total_tokens += response.get("token",0)
+        state.llm_metrics.append({
+            "trace_id": state.trace_id,
+            "node": self.name,
+            "model": response.get("model"),
+            "tokens": response.get("token"),
+            "latency": response.get("latency"),
+        })
+        
         try:
             data = json.loads(content)
             plan = data.get("plan", [])
