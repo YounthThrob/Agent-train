@@ -10,7 +10,18 @@ class PolicyNode(BaseNode):
         }
         
         result = self.tool_router.route("query_policy", tool_input)
-
+        
+        # 记录工具调用指标
+        state.tool_metrics.append({
+            "trace_id": state.trace_id,
+            "node": self.name,
+            "tool": "query_policy",
+            "success": result["success"],
+            "used_fallback": result.get("used_fallback"),
+            "retry_count": result.get("retry_count"),
+            "latency": result.get("metadata", {}).get("latency"),
+            "error": result.get("error")
+        })
         state.add_trace(self.name, {
             "tool": "query_policy",
             "tool_input": tool_input, 
