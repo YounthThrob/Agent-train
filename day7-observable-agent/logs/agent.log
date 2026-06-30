@@ -58,3 +58,22 @@ AttributeError: 'AgentState' object has no attribute 'risk_check_result'. Did yo
 2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] start node: final_node
 2026-06-30 14:34:59 | core.DynamicDAGEngine | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] finish node: final_node
 2026-06-30 14:34:59 | main | INFO | [fce95b83-0e90-4d56-a96a-1115f11aa327] request finish | success=True | latency=9.1898s
+2026-06-30 14:38:35 | __main__ | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] request start | user_id=u001
+2026-06-30 14:38:41 | llm | INFO | LLM call success | model: deepseek-v4-pro | latency: 5.8418s | tokens: 396
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: param_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: param_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: policy_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: query_policy | input: {'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: query_policy | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: policy_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: amount_check_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: check_amount_limit | input: {'amount': 1280.0, 'limit': 1500}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: check_amount_limit | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: amount_check_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: risk_node
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call start | tool: check_risk | input: {'amount': 1280.0, 'expense_type': '酒店', 'city': '上海'}
+2026-06-30 14:38:41 | core.tool_router | INFO | Tool call success | tool: check_risk | latency: 0.0s | retries: None
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: risk_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] start node: final_node
+2026-06-30 14:38:41 | core.DynamicDAGEngine | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] finish node: final_node
+2026-06-30 14:38:41 | __main__ | INFO | [b7103005-ee59-4d66-8fc1-e7654508382a] request finish | success=True | latency=5.8487s
