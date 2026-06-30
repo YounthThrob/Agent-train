@@ -1,0 +1,22 @@
+# DAY7的核心目标
+让 Agent 的每一次请求链路都能被看见、追踪、复盘、排错、统计成本。
+
+User
+ ↓
+TraceContext 创建 trace_id
+ ↓
+Memory Load
+ ↓
+Planner 记录日志
+ ↓
+Dynamic DAG 记录每个节点
+ ↓
+ToolRouter 记录工具调用
+ ↓
+LLM 记录 token / latency
+ ↓
+Memory Save
+ ↓
+Execution Report
+ ↓
+Final
